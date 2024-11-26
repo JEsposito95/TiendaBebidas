@@ -17,6 +17,10 @@ public class Producto {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
     private int Stock;
     private String descripcion;
 
