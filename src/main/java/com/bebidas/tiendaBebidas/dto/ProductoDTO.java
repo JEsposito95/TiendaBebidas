@@ -1,9 +1,9 @@
 package com.bebidas.tiendaBebidas.dto;
 
 public record ProductoDTO(
-        Long id,
+        int id,
         String nombre,
         Double precio,
-        CategoriaDTO categoria,
+        String categoria,
         String descripcion) {
 }
