@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 public record PedidoDetalleDTO(
-        Long id,
+        int id,
         List<ProductoDTO> productos, //Lista de productos con su informacion
         Map<Integer,Integer> cantidad, // ProductoId -> cantidad
         double precioTotal,

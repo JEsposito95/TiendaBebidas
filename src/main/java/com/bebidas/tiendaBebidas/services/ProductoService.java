@@ -38,13 +38,13 @@ public class ProductoService {
         return new ProductoDTO(
                 productoGuardado.getId(),
                 productoGuardado.getNombre(),
-                productoGuardado.getPrecio(),
                 productoGuardado.getDescripcion(),
+                productoGuardado.getPrecio(),
                 productoGuardado.getCategoria().getNombre()
         );
     }
 
-    public Producto actualizarProducto(int id, CrearProductoDTO crearProductoDTO) {
+    public ProductoDTO actualizarProducto(int id, CrearProductoDTO crearProductoDTO) {
         Producto productoExistente = productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
@@ -57,7 +57,17 @@ public class ProductoService {
         productoExistente.setDescripcion(crearProductoDTO.descripcion());
         productoExistente.setCategoria(categoria);
 
-        return productoRepository.save(productoExistente);
+        // Guardar el producto actualizado
+        Producto productoActualizado = productoRepository.save(productoExistente);
+
+        // Convertir a ProductoDTO antes de devolver
+        return new ProductoDTO(
+                productoActualizado.getId(),
+                productoActualizado.getNombre(),
+                productoActualizado.getDescripcion(),
+                productoActualizado.getPrecio(),
+                productoActualizado.getCategoria().getNombre()
+        );
     }
 
     public List<ProductoDTO> listarProductos() {
@@ -65,8 +75,8 @@ public class ProductoService {
                 .map(producto -> new ProductoDTO(
                         producto.getId(),
                         producto.getNombre(),
-                        producto.getPrecio(),
                         producto.getDescripcion(),
+                        producto.getPrecio(),
                         producto.getCategoria().getNombre()
                 ))
                 .toList();
@@ -78,8 +88,8 @@ public class ProductoService {
         return new ProductoDTO(
                 producto.getId(),
                 producto.getNombre(),
-                producto.getPrecio(),
                 producto.getDescripcion(),
+                producto.getPrecio(),
                 producto.getCategoria().getNombre()
         );
     }
