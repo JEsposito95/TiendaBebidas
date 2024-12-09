@@ -22,9 +22,13 @@ public class Pedido {
     @ElementCollection
     private Map<Producto, Double> precioPorUnidad;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente; // Relación con Cliente
+
     private double precioTotal;
     private String direccion;
-    private double estado;
+    private String estado;
 
     private String nombreCliente;
     private String direccionCliente;
